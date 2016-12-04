@@ -178,6 +178,19 @@ func (m *metric) Serialize() []byte {
 	return tmp
 }
 
+func (m *metric) CopyTo(dst []byte) {
+	i := 0
+	i += copy(dst[i:], m.name)
+	i += copy(dst[i:], m.tags)
+	dst[i] = ' '
+	i++
+	i += copy(dst[i:], m.fields)
+	dst[i] = ' '
+	i++
+	i += copy(dst[i:], m.t)
+	dst[i] = '\n'
+}
+
 func (m *metric) Fields() map[string]interface{} {
 	fieldMap := map[string]interface{}{}
 	i := 0

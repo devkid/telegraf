@@ -22,6 +22,7 @@ type Metric interface {
 	Serialize() []byte
 	String() string // convenience function for string(Serialize())
 	Copy() Metric
+	CopyTo(dst []byte)
 
 	// Tag functions
 	HasTag(key string) bool
